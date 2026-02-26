@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Orders - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
+        .admin-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background: #2c3e50; color: white; padding: 2rem 0; }
+        .sidebar h2 { text-align: center; margin-bottom: 2rem; }
+        .sidebar a { display: block; color: #ecf0f1; text-decoration: none; padding: 1rem 2rem; }
+        .sidebar a:hover { background: #34495e; border-left: 4px solid #e74c3c; }
+        .sidebar a.active { background: #34495e; border-left: 4px solid #e74c3c; }
+        .main-content { flex: 1; padding: 2rem; }
+        .header { margin-bottom: 2rem; }
+        .header h1 { color: #2c3e50; }
+        table { width: 100%; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #ecf0f1; }
+        th { background: #2c3e50; color: white; }
+        .status { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
+        .status-PENDING { background: #fff3cd; color: #856404; }
+        .status-CONFIRMED { background: #d4edda; color: #155724; }
+        .status-IN_PROGRESS { background: #cce5ff; color: #004085; }
+        .status-COMPLETED { background: #d1ecf1; color: #0c5460; }
+        .status-CANCELLED { background: #f8d7da; color: #721c24; }
+        select { padding: 0.3rem; border: 1px solid #ddd; border-radius: 5px; }
+        .update-btn { background: #3498db; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <h2>⚡ Admin Panel</h2>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/products">Manage Products</a>
+            <a href="/admin/orders" class="active">Manage Orders</a>
+            <a href="/">View Site</a>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h1>Manage Orders</h1>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.id}">1</td>
+                        <td th:text="${#temporals.format(order.orderDate, 'dd/MM/yyyy')}">01/01/2025</td>
+                        <td th:text="${order.customerName}">John Doe</td>
+                        <td th:text="${order.product.name}">Classic Gate</td>
+                        <td th:text="${order.quantity}">1</td>
+                        <td th:text="'TSh ' + ${order.totalPrice}">350000</td>
+                        <td>
+                            <span class="status" th:classappend="'status-' + ${order.status}" 
+                                  th:text="${order.status}">PENDING</span>
+                        </td>
+                        <td>
+                            <form th:action="@{'/admin/orders/' + ${order.id} + '/status'}" method="post" style="display: flex; gap: 0.5rem;">
+                                <select name="status">
+                                    <option value="PENDING" th:selected="${order.status == 'PENDING'}">Pending</option>
+                                    <option value="CONFIRMED" th:selected="${order.status == 'CONFIRMED'}">Confirmed</option>
+                                    <option value="IN_PROGRESS" th:selected="${order.status == 'IN_PROGRESS'}">In Progress</option>
+                                    <option value="COMPLETED" th:selected="${order.status == 'COMPLETED'}">Completed</option>
+                                    <option value="CANCELLED" th:selected="${order.status == 'CANCELLED'}">Cancelled</option>
+                                </select>
+                                <button type="submit" class="update-btn">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

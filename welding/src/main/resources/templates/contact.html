@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wasiliana Nasi - Welding Business</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; margin-left: 2rem; }
+        .container { max-width: 600px; margin: 2rem auto; padding: 2rem; }
+        .form-group { margin-bottom: 1rem; }
+        input, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px; }
+        .btn { background: #e74c3c; color: white; padding: 0.8rem 2rem; border: none; border-radius: 5px; cursor: pointer; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h2>⚡ Welding Business</h2>
+        <div>
+            <a href="/">Nyumbani</a>
+            <a href="/products">Bidhaa</a>
+            <a href="/about">Kuhusu Sisi</a>
+            <a href="/contact">Wasiliana</a>
+            <a href="/register">Jisajili</a>
+            <a href="/login">Ingia</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Wasiliana Nasi</h1>
+        <form action="#" th:action="@{/contact}" method="post">
+            <div class="form-group">
+                <label>Jina:</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Ujumbe:</label>
+                <textarea name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Tuma</button>
+        </form>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Welding Business</p>
+    </footer>
+</body>
+</html>

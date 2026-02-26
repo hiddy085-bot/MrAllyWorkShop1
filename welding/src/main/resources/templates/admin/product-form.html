@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
+        .admin-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background: #2c3e50; color: white; padding: 2rem 0; }
+        .sidebar h2 { text-align: center; margin-bottom: 2rem; }
+        .sidebar a { display: block; color: #ecf0f1; text-decoration: none; padding: 1rem 2rem; }
+        .sidebar a:hover { background: #34495e; }
+        .main-content { flex: 1; padding: 2rem; }
+        .header { margin-bottom: 2rem; }
+        .header h1 { color: #2c3e50; }
+        .form-container { background: white; padding: 2rem; border-radius: 10px; max-width: 600px; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50; }
+        input, select, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px; }
+        .btn { background: #e74c3c; color: white; padding: 0.8rem 2rem; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <h2>⚡ Admin Panel</h2>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/products">Manage Products</a>
+            <a href="/admin/orders">Manage Orders</a>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h1 th:text="${product.id == null} ? 'Add New Product' : 'Edit Product'">Add New Product</h1>
+            </div>
+            
+            <div class="form-container">
+                <form action="#" th:action="@{/admin/products/save}" method="post" th:object="${product}">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    
+                    <div class="form-group">
+                        <label>Product Name:</label>
+                        <input type="text" th:field="*{name}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea th:field="*{description}" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select th:field="*{category}">
+                            <option value="GATE">Gate</option>
+                            <option value="WINDOW">Window</option>
+                            <option value="DOOR">Door</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Price (TSh):</label>
+                        <input type="number" th:field="*{price}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Material:</label>
+                        <input type="text" th:field="*{material}" placeholder="e.g., Steel, Aluminum">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Dimensions:</label>
+                        <input type="text" th:field="*{dimensions}" placeholder="e.g., 2m x 1.5m">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Estimated Days:</label>
+                        <input type="number" th:field="*{estimatedDays}" value="7">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" th:field="*{available}" checked> Available
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Save Product</button>
+                    <a href="/admin/products" style="margin-left: 1rem;">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

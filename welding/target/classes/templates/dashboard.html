@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Welding Business</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; margin-left: 2rem; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; }
+        .welcome { background: #ecf0f1; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h2>⚡ Welding Business</h2>
+        <div>
+            <a href="/">Nyumbani</a>
+            <a href="/products">Bidhaa</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="#" onclick="document.getElementById('logoutForm').submit()">Toka</a>
+        </div>
+    </nav>
+    
+    <form id="logoutForm" action="#" th:action="@{/logout}" method="post" style="display: none;"></form>
+    
+    <div class="container">
+        <div class="welcome">
+            <h1>Karibu, <span th:text="${user != null ? user.fullName : 'Mteja'}">Jina</span>!</h1>
+            <p>Karibu kwenye dashboard yako. Hapa utaona historia ya maagizo yako.</p>
+        </div>
+        
+        <div style="text-align: center; padding: 2rem; border: 1px solid #ddd; border-radius: 10px;">
+            <p>Huna maagizo kwa sasa.</p>
+            <a href="/products" style="color: #e74c3c;">Tazama bidhaa zetu</a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Welding Business</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+welding\entity\Order$OrderStatus.class
+welding\service\OrderService.class
+welding\service\UserService.class
+welding\controller\HomeController.class
+welding\config\SecurityConfig.class
+welding\entity\Order.class
+welding\repository\UserRepository.class
+welding\entity\User$Role.class
+welding\controller\AdminController.class
+welding\WeldingApplication.class
+welding\repository\OrderRepository.class
+welding\entity\Product.class
+welding\repository\ProductRepository.class
+welding\entity\User.class
+welding\controller\OrderController.class
+welding\service\ProductService.class

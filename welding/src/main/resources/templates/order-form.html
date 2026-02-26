@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agiza Bidhaa - Welding Business</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
+        .navbar { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; margin-left: 2rem; }
+        .container { max-width: 600px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 10px; }
+        h2 { color: #2c3e50; margin-bottom: 1rem; }
+        .product-info { background: #f8f9fa; padding: 1rem; border-radius: 5px; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        input, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px; }
+        .btn { background: #e74c3c; color: white; padding: 0.8rem 2rem; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #c0392b; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h2>⚡ Welding Business</h2>
+        <div>
+            <a href="/">Nyumbani</a>
+            <a href="/products">Bidhaa</a>
+            <a href="/about">Kuhusu Sisi</a>
+            <a href="/contact">Wasiliana</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h2>Agiza Bidhaa</h2>
+        
+        <div class="product-info" th:object="${product}">
+            <h3 th:text="${product.name}">Jina la Bidhaa</h3>
+            <p th:text="${product.description}">Maelezo</p>
+            <p><strong>Bei:</strong> TSh <span th:text="${product.price}">350000</span></p>
+        </div>
+        
+        <form action="#" th:action="@{/orders/create}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            
+            <div class="form-group">
+                <label>Jina Lako:</label>
+                <input type="text" name="customerName" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Simu:</label>
+                <input type="tel" name="customerPhone" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="customerEmail">
+            </div>
+            
+            <div class="form-group">
+                <label>Anuani ya Kufikia:</label>
+                <textarea name="deliveryAddress" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Idadi:</label>
+                <input type="number" name="quantity" value="1" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Maelezo ya Ziada:</label>
+                <textarea name="customRequirements" placeholder="Vipimo maalum, rangi, nk..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn">WASILISHA ORDER</button>
+        </form>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Welding Business</p>
+    </footer>
+</body>
+</html>

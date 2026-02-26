@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.name} + ' - Welding Business'">Bidhaa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; margin-left: 2rem; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; }
+        .product-detail { border: 1px solid #ddd; border-radius: 10px; padding: 2rem; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: #e74c3c; color: white; text-decoration: none; border-radius: 5px; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h2>⚡ Welding Business</h2>
+        <div>
+            <a href="/">Nyumbani</a>
+            <a href="/products">Bidhaa</a>
+            <a href="/about">Kuhusu Sisi</a>
+            <a href="/contact">Wasiliana</a>
+            <a href="/register">Jisajili</a>
+            <a href="/login">Ingia</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="product-detail">
+            <h1 th:text="${product.name}">Jina</h1>
+            <p th:text="${product.description}">Maelezo</p>
+            <p><strong>Bei:</strong> <span th:text="'TSh ' + ${product.price}">Bei</span></p>
+            <p><strong>Category:</strong> <span th:text="${product.category}">Category</span></p>
+            <p><strong>Material:</strong> <span th:text="${product.material ?: 'Steel'}">Steel</span></p>
+            <p><strong>Dimensions:</strong> <span th:text="${product.dimensions ?: 'Custom'}">Custom</span></p>
+            <a href="/products" class="btn">Rudi kwenye Bidhaa</a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Welding Business</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+package welding;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class WeldingApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(WeldingApplication.class, args);
+    }
+}

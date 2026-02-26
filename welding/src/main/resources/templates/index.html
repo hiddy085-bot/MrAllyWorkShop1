@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Business - Nyumbani</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; }
+        .navbar { background: #2c3e50; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .navbar a { color: white; text-decoration: none; margin-left: 2rem; }
+        .navbar a:hover { color: #e74c3c; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504320995607-eb3db8f7c0b3?w=1200'); background-size: cover; height: 500px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: #e74c3c; color: white; text-decoration: none; border-radius: 5px; }
+        .btn:hover { background: #c0392b; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 5%; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .product-card { border: 1px solid #ddd; border-radius: 10px; padding: 1rem; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2>⚡ Welding Business</h2>
+        <div>
+            <a href="/">Nyumbani</a>
+            <a href="/products">Bidhaa</a>
+            <a href="/about">Kuhusu Sisi</a>
+            <a href="/contact">Wasiliana</a>
+            <a href="/register">Jisajili</a>
+            <a href="/login">Ingia</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Karibu Welding Business</h1>
+            <p>Mageti | Madirisha | Milango</p>
+            <a href="/products" class="btn">Tazama Bidhaa</a>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Bidhaa Zetu Maarufu</h2>
+        <div class="products-grid">
+            <div class="product-card" th:each="product : ${featuredProducts}">
+                <h3 th:text="${product.name}">Jina</h3>
+                <p th:text="${product.description}">Maelezo</p>
+                <p><strong th:text="'TSh ' + ${product.price}">Bei</strong></p>
+                <a th:href="@{'/product/' + ${product.id}}" class="btn">Angalia</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Welding Business</p>
+    </footer>
+</body>
+</html>
